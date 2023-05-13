@@ -3,6 +3,13 @@
 
 This is a RESTful API for retrieving news articles from various publishers based on different criteria such as date, publisher name, and stock ticker. The API is built on top of the [EOD Stock API](https://eod-stock-api.site/) and requires an API key for authentication.
 
+
+## BASE URL
+
+    https://api.news-api.site
+
+
+
 ## API Endpoints
 
 The API supports the following endpoints:
