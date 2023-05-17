@@ -17,7 +17,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 1. `/api/v1/news/article/`
 
 - Description: Fetches a specific news article.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/article/`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/article/`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -25,7 +25,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 2. `/api/v1/news/articles-bounded/`
 
 - Description: Fetches a list of news articles within a specified range.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-bounded/{upperBound}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-bounded/{upperBound}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -35,7 +35,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 3. `/api/v1/news/articles-by-date/`
 
 - Description: Fetches a list of news articles by a specific date.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-date/{date}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-date/{date}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -45,7 +45,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 4. `/api/v1/news/articles-by-publisher/`
 
 - Description: Fetches a list of news articles by a specific publisher.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-publisher/{publisher}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-publisher/{publisher}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -55,7 +55,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 5. `/api/v1/news/articles-by-ticker/`
 
 - Description: Fetches a list of news articles by a specific stock ticker.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-ticker/{ticker}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-ticker/{ticker}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -65,7 +65,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 6. `/api/v1/news/articles-by-page/`
 
 - Description: Fetches a list of news articles by page number.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-page/{pageNumber}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-page/{pageNumber}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -75,7 +75,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 7. `/api/v1/news/articles-by-company/`
 
 - Description: Fetches a list of news articles by a specific company.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-company/`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-company/`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
@@ -83,7 +83,7 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 ### 8. `/api/v1/news/articles-by-exchange/`
 
 - Description: Fetches a list of news articles by a specific exchange and page number.
-- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-exchange/{exchange}/{page}`
+- Endpoint URL: `https://api.news-api.site/api/v1/news/articles-by-exchange/{exchange}/{page}`
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
