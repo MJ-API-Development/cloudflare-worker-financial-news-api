@@ -87,6 +87,6 @@ Sure! Here are the documentation and explanations for each API endpoint in the p
 - Method: GET
 - Query Parameters:
   - `api_key` (required): Your API key.
+    - `page` (reuired): Page Number
 - URL Parameters:
   - `exchange` (required): The exchange code (a letter between 1 and 8 characters).
-  - `page`
