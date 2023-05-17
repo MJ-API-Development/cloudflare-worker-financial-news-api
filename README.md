@@ -10,101 +10,83 @@ This is a RESTful API for retrieving news articles from various publishers based
 
 
 
+Sure! Here are the documentation and explanations for each API endpoint in the provided code:
+
 ## API Endpoints
 
-The API supports the following endpoints:
+### 1. `/api/v1/news/article/`
 
-### `/api/v1/news/article/`
+- Description: Fetches a specific news article.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/article/`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
 
-Retrieves a single news article based on its ID.
+### 2. `/api/v1/news/articles-bounded/`
 
-**Method:** `GET`
+- Description: Fetches a list of news articles within a specified range.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-bounded/{upperBound}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `upperBound` (required): An integer between 1 and 99 representing the upper bound for the articles.
 
-**URL Parameters:**
+### 3. `/api/v1/news/articles-by-date/`
 
-- `id`: ID of the news article to retrieve.
+- Description: Fetches a list of news articles by a specific date.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-date/{date}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `date` (required): The date in the format `YYYY-MM-DD`.
 
-### `/api/v1/news/articles-bounded/{upper_bound}`
+### 4. `/api/v1/news/articles-by-publisher/`
 
-Retrieves a list of news articles within a certain range of IDs.
+- Description: Fetches a list of news articles by a specific publisher.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-publisher/{publisher}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `publisher` (required): The name of the publisher.
 
-**Method:** `GET`
+### 5. `/api/v1/news/articles-by-ticker/`
 
-**URL Parameters:**
+- Description: Fetches a list of news articles by a specific stock ticker.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-ticker/{ticker}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `ticker` (required): The stock ticker code (alphanumeric field with up to 96 characters).
 
-- `upper_bound`: Upper bound of the ID range. Must be an integer between 1 and 99.
+### 6. `/api/v1/news/articles-by-page/`
 
-### `/api/v1/news/articles-by-date/{date}`
+- Description: Fetches a list of news articles by page number.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-page/{pageNumber}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `pageNumber` (required): An integer between 1 and 99 representing the page number.
 
-Retrieves a list of news articles published on a specific date.
+### 7. `/api/v1/news/articles-by-company/`
 
-**Method:** `GET`
+- Description: Fetches a list of news articles by a specific company.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-company/`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
 
-**URL Parameters:**
+### 8. `/api/v1/news/articles-by-exchange/`
 
-- `date`: Date of the articles to retrieve, in the format `YYYY-MM-DD`.
-
-### `/api/v1/news/articles-by-publisher/{publisher}`
-
-Retrieves a list of news articles published by a specific publisher.
-
-**Method:** `GET`
-
-**URL Parameters:**
-
-- `publisher`: Name of the publisher to retrieve articles for. Spaces should be encoded as `%20`.
-
-### `/api/v1/news/articles-by-ticker/{stock_code}`
-
-Retrieves a list of news articles related to a specific stock.
-
-**Method:** `GET`
-
-**URL Parameters:**
-
-- `stock_code`: Stock code of the stock to retrieve articles for. Must be an alphanumeric string with up to 96 characters.
-
-### `/api/v1/news/articles-by-page/{page}`
-
-Retrieves a list of news articles from a specific page.
-
-**Method:** `GET`
-
-**URL Parameters:**
-
-- `page`: Page number of the articles to retrieve. Must be an integer between 1 and 99.
-
-## Authentication
-
-To use the API, you will need to obtain an API key from the [EOD Stock API](https://eod-stock-api.site/). Once you have obtained an API key, you can include it in your requests by adding the `api_key` query parameter to the request URL, like this:
-``
-
-### Retrieve news articles upto a certain number of articles
-
-```
-GET /api/v1/news/articles-bounded/10?api_key=YOUR_API_KEY
-```
-
-### Retrieve news articles published on a specific date
-
-```
-GET /api/v1/news/articles-by-date/2022-01-01?api_key=YOUR_API_KEY
-```
-
-### Retrieve news articles published by a specific publisher
-
-```
-GET /api/v1/news/articles-by-publisher/New%20York%20Times?api_key=YOUR_API_KEY
-```
-
-### Retrieve news articles related to a specific stock
-
-```
-GET /api/v1/news/articles-by-ticker/AAPL?api_key=YOUR_API_KEY
-```
-
-### Retrieve news articles by page getting ten articles per page
-
-```
-GET /api/v1/news/articles-by-page/2?api_key=YOUR_API_KEY
-```
+- Description: Fetches a list of news articles by a specific exchange and page number.
+- Endpoint URL: `https://gateway.eod-stock-api.site/api/v1/news/articles-by-exchange/{exchange}/{page}`
+- Method: GET
+- Query Parameters:
+  - `api_key` (required): Your API key.
+- URL Parameters:
+  - `exchange` (required): The exchange code (a letter between 1 and 8 characters).
+  - `page`

@@ -10,9 +10,9 @@ const endpointMap = {
     "/api/v1/news/articles-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-exchange/",
 
     "/api/v1/news/companies-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/companies-by-exchange/",
-    "/api/v1/news/tickers-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/tickers-by-exchange/",
+    "/api/v1/news/tickers-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/stocks/exchange/code/",
     "/api/v1/news/list-publishers": "https://gateway.eod-stock-api.site/api/v1/news/list-publishers",
-    "/api/v1/news/list-exchanges": "https://gateway.eod-stock-api.site/api/v1/news/list-exchanges",
+    "/api/v1/news/list-exchanges": "https://gateway.eod-stock-api.site/api/v1/exchanges",
   };
 
 export default {
@@ -22,6 +22,7 @@ export default {
             const { pathname, searchParams } = new URL(request.url);
             
             const apiKey = searchParams.get("api_key");
+            const page = searchParams.get("page");
 
             if (pathname === "/") {
                 // will return the backend https://api.news-api.site
@@ -65,8 +66,25 @@ export default {
                             if (!/^\d+$/.test(variableValue) || variableValue < 1 || variableValue > 99) {
                             return new Response("Invalid page number. Page number must be an integer between 1 and 99.", { status: 400 });
                             }
-                            endpointWithVariable = endpointUrl + variableValue;
-                        } else {
+                            endpointWithVariable = endpointUrl + encodeURIComponent(variableValue);
+                        } else if (endpointPath === "/api/v1/news/list-exchanges"){
+                            endpointWithVariable = endpointUrl;
+                        } else if (endpointPath === "/api/v1/news/list-publishers"){
+                            endpointWithVariable = endpointUrl;
+                        }    
+                        else if (endpointPath === "/api/v1/news/tickers-by-exchange/"){
+                            const variableValue = pathname.slice(endpointPath.length).split("/")[0];
+                            if (!/^[A-Za-z]{1,8}$/.test(variableValue)){
+                                return new Response("Invalid Exchange Code, Must be a letter between 1 and 8 Characters", {status: 400});
+                            }    
+                            endpointWithVariable = endpointUrl + encodeURIComponent(variableValue);
+                        } else if (endpointPath === "/api/v1/news/articles-by-exchange/") {
+                            const variableValue = pathname.slice(endpointPath.length).split("/")[0];
+                            if (!/^[A-Za-z]{1,8}$/.test(variableValue)){
+                                return new Response("Invalid Exchange Code, Must be a letter between 1 and 8 Characters", {status: 400});
+                            }    
+                            endpointWithVariable = endpointUrl + encodeURIComponent(variableValue) + `/${page}`;
+                        }else {
                             return new Response("Invalid endpoint.", { status: 404 });
                         }
                             // adding the api_key back to the url
@@ -109,3 +127,5 @@ export default {
         const {rapid_api_key} = env;
         return apiKey === rapid_api_key;
   }
+
+  
