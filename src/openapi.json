@@ -1,0 +1,297 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "EOD Stock API",
+      "version": "1.0.0",
+      "description": "Documentation for the EOD Stock API"
+    },
+    "paths": {
+      "/api/v1/news/article/": {
+        "get": {
+          "summary": "Fetch a specific news article",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Your API key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/api/v1/news/articles-bounded/{upperBound}": {
+        "get": {
+          "summary": "Fetch news articles within a specified range",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Your API key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "upperBound",
+              "in": "path",
+              "description": "The upper bound for the articles (1-99)",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              }
+            }
+          ]
+        }
+      },
+      "/api/v1/news/articles-by-date/{date}": {
+        "get": {
+          "summary": "Fetch news articles by date",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Your API key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "date",
+              "in": "path",
+              "description": "The date in the format YYYY-MM-DD",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+              }
+            }
+          ]
+        }
+      },
+      "/api/v1/news/articles-by-publisher/{publisher}": {
+        "get": {
+          "summary": "Fetch news articles by publisher",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Your API key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "publisher",
+              "in": "path",
+              "description": "The name of the publisher",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/api/v1/news/articles-by-ticker/{ticker}": {
+        "get": {
+          "summary": "Fetch news articles by stock ticker",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Your API key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ticker",
+              "in": "path",
+              "description": "The stock ticker code (alphanumeric field with up to 96 characters)",
+              "required": true,
+             
+              "schema": {
+                "type": "string",
+                "pattern": "^[\\w]{0,96}$"
+              }
+              }
+              ]
+              }
+              },
+              "/api/v1/news/articles-by-page/{pageNumber}": {
+              "get": {
+                "summary": "Fetch news articles by page number",
+                "parameters": [
+                  {
+                    "name": "api_key",
+                    "in": "query",
+                    "description": "Your API key",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "pageNumber",
+                    "in": "path",
+                    "description": "The page number for paginated results (1-99)",
+                    "required": true,
+                    "schema": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 99
+                    }
+                  }
+                ]
+              }
+              },
+              "/api/v1/news/articles-by-company/": {
+              "get": {
+                "summary": "Fetch news articles by company",
+                "parameters": [
+                  {
+                    "name": "api_key",
+                    "in": "query",
+                    "description": "Your API key",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
+              },
+              "/api/v1/news/articles-by-exchange/{exchangeCode}/{page}": {
+              "get": {
+                "summary": "Fetch news articles by exchange",
+                "parameters": [
+                  {
+                    "name": "api_key",
+                    "in": "query",
+                    "description": "Your API key",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "exchangeCode",
+                    "in": "path",
+                    "description": "The exchange code (1-8 characters)",
+                    "required": true,
+                    "schema": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z]{1,8}$"
+                    }
+                  },
+                  {
+                    "name": "page",
+                    "in": "path",
+                    "description": "The page number for paginated results (1-99)",
+                    "required": true,
+                    "schema": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 99
+                    }
+                  }
+                ]
+              }
+              },
+              "/api/v1/news/companies-by-exchange/{exchangeCode}": {
+              "get": {
+                "summary": "Fetch companies by exchange",
+                "parameters": [
+                  {
+                    "name": "api_key",
+                    "in": "query",
+                    "description": "Your API key",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "exchangeCode",
+                    "in": "path",
+                    "description": "The exchange code (1-8 characters)",
+                    "required": true,
+                    "schema": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z]{1,8}$"
+                    }
+                  }
+                ]
+              }
+              },
+              "/api/v1/news/tickers-by-exchange/{exchangeCode}": {
+              "get": {
+                "summary": "Fetch tickers by exchange",
+                "parameters": [
+                  {
+                    "name": "api_key",
+                    "in": "query",
+                    "description": "Your API key",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "exchangeCode",
+                    "in": "path",
+                    "description": "The exchange code (1-8 characters)",
+                    "required": true,
+                    "schema": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z]{1,8}$"
+                    }
+                    }
+                    ]
+                    }
+                    },
+                    "/api/v1/news/list-publishers": {
+                    "get": {
+                      "summary": "Fetch the list of news publishers",
+                      "parameters": [
+                        {
+                          "name": "api_key",
+                          "in": "query",
+                          "description": "Your API key",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                    },
+                    "/api/v1/news/list-exchanges": {
+                    "get": {
+                      "summary": "Fetch the list of exchanges",
+                      "parameters": [
+                        {
+                          "name": "api_key",
+                          "in": "query",
+                          "description": "Your API key",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    }
+                    }
+                    }
+                    }
+                                       
+              
