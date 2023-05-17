@@ -5,6 +5,14 @@ const endpointMap = {
     "/api/v1/news/articles-by-publisher/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-publisher/",
     "/api/v1/news/articles-by-ticker/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-ticker/",
     "/api/v1/news/articles-by-page/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-page/",
+
+    "/api/v1/news/articles-by-company/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-company/",
+    "/api/v1/news/articles-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/articles-by-exchange/",
+
+    "/api/v1/news/companies-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/companies-by-exchange/",
+    "/api/v1/news/tickers-by-exchange/": "https://gateway.eod-stock-api.site/api/v1/news/tickers-by-exchange/",
+    "/api/v1/news/list-publishers": "https://gateway.eod-stock-api.site/api/v1/news/list-publishers",
+    "/api/v1/news/list-exchanges": "https://gateway.eod-stock-api.site/api/v1/news/list-exchanges",
   };
 
 export default {
@@ -63,7 +71,25 @@ export default {
                         }
                             // adding the api_key back to the url
                             const endpointWithApiKey = apiKey ? `${endpointWithVariable}?api_key=${apiKey}` : endpointWithVariable;
-                            return fetch(endpointWithApiKey);
+                            // Caching get requests only
+                            
+                            // TODO this cache must be active in case rapid api is calling this endpoint
+                            const is_rapid_api = await isRequestFromRapidAPI(apiKey, env);
+
+                            if ((request.method.toUpperCase() === "GET") && (is_rapid_api)) {
+                                const newRequest = new Request(endpointWithApiKey, request);
+                                return await fetch(newRequest, {
+                                  cf: {
+                                    cacheTtl: 10800,
+                                    cacheEverything: true,
+                                    cacheKey: endpointWithApiKey,
+                                  },
+                                });
+                              }
+                                          
+
+                        return fetch(endpointWithApiKey);
+                        
                     } else {
                         return new Response("Invalid endpoint.", { status: 404 });
                     }
@@ -77,3 +103,9 @@ export default {
     }
   };
   
+
+  async function isRequestFromRapidAPI(apiKey, env){
+    /** will return true if request originated from rapidAPI */
+        const {rapid_api_key} = env;
+        return apiKey === rapid_api_key;
+  }
