@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "title": "EOD Stock API",
+      "title": "Business & Financial News API",
       "version": "1.0.0",
-      "description": "Documentation for the EOD Stock API"
+      "description": "Access Business & Financial News Articles By Companies, Exchanges & Ticker Symbols"
     },
     "paths": {
       "/api/v1/news/article/": {

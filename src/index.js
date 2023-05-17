@@ -30,6 +30,10 @@ export default {
                 return response;
             };
 
+            if (pathname === "/openapi"){
+                return loadOpenAPI();
+            };
+
             if (pathname.startsWith("/api/v1")){
 
                     const endpointPath = Object.keys(endpointMap).find((path) => pathname.startsWith(path));
@@ -128,4 +132,18 @@ export default {
         return apiKey === rapid_api_key;
   }
 
-  
+async function loadOpenAPI() {
+  const openApiUrl = "https://raw.githubusercontent.com/MJ-API-Development/cloudflare-worker-financial-news-api/main/src/openapi.json";
+
+  try {
+    const response = await fetch(openApiUrl);
+    const openApiContent = await response.json();
+
+    // Do something with the OpenAPI content
+    // For example, you can log it or return it as a response
+
+    return new Response(JSON.stringify(openApiContent), { status: 200 });
+  } catch (error) {
+    return new Response("Failed to load OpenAPI content.", { status: 500 });
+  }
+}
